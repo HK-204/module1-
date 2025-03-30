@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 3</title>
+</head>
+<body>
+  <input type="number" id="number" placeholder="nhap so bat ky">
+  <button onclick="bai3()">test</button>
+</body>
+</html>
+<script>
+  function bai3(){
+    var number = +document.getElementById("number").value;
+    if (number > 0){
+      document.write(1);
+    }else if(number < 0){
+      document.write(-1);
+    }else {
+      document.write(0);
+    }
+  }
+</script>

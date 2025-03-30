@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    .font {
+        font-family: "lucida Grande", "lucida Sans Unicode", tahoma, sans-serif;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Basicform</title>
+</head>
+<body>
+<form method="post" action="basicform.php"></form>
+    <h1>Order form</h1>
+    <h3>What would you like to buy?</h3>
+    <select>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <h3>How many would you like to order?</h3>
+    <input type="radio" name="rad"/>1 - $10<br>
+    <input type="radio" name="rad"/>2 - $20<br>
+    <input type="radio" name="rad"/>3 - $25<br>
+    <h3>Name <span style="color: red">*</span> </h3>
+    <input type="text" name="First name" placeholder="First name" size="15" required>
+    <input type="text" name="Last name" placeholder="Last name" size="15" required>
+    <h3>Email</h3>
+    <input type="text" name="email" size="35">
+    <h3>Phone number</h3>
+    <input type="number" name="phone number 1" size="5"> -
+    <input type="number" name="phone number 2" size="5"> -
+    <input type="number" name="phone number 3" size="5">
+    <p> <input type="button" name="submit" value="submit"></p>
+</body>
+</html>

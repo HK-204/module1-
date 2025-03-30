@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 1</title>
+</head>
+<body>
+  <script>
+    let num = +prompt("Enter a number (enter -1 to end)");
+    let total = 0;
+    while (num != -1){
+      if (!isNaN(num)) {
+        alert("Your number is " + num);
+        total += num;
+      }else {
+        alert("Please enter a valid number");
+      }
+      num = +prompt("Enter a number (enter -1 to end)");
+    }
+    alert(total);
+  </script>
+</body>
+</html>

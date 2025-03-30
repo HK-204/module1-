@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>su kien chuot</title>
+</head>
+<body>
+    <form>
+        <img id="myImage" src="3f6ce333026cde1c0ea1c030a81ff586.jfif" alt="ball" style="width:30%">
+        <p>Click button below to move the image to right</p>
+        <input type="button" onclick="moveRight()" value="click me">
+    </form>
+</body>
+</html>
+<script>
+    let imgOjs = null
+    imgOjs = document.getElementById("myImage");
+    function init(){
+        imgOjs = document.getElementById("myImage");
+        imgOjs.style.position = 'relative';
+        imgOjs.style.left = '0px';
+    }
+    function moveRight(){
+        imgOjs.style.left = parseInt(imgOjs.style.left) + 10 + 'px';
+    }
+    window.onload = init;
+</script>

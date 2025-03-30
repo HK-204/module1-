@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tinh diem hoc sinh</title>
+</head>
+<body>
+  <input type="number" id="Ly" placeholder="diem ly">
+  <input type="number" id="Hoa" placeholder="diem hoa">
+  <input type="number" id="Sinh" placeholder="diem sinh">
+  <input type="button" value="calc" onclick="tinhDiem()" id="calc">
+</body>
+</html>
+<script>
+  function tinhDiem(){
+    var ly = parseInt(document.getElementById("Ly").value);
+    var hoa = parseInt(document.getElementById("Hoa").value);
+    var sinh = parseInt(document.getElementById("Sinh").value);
+
+    if (isNaN(ly) || isNaN(hoa) || isNaN(sinh)) {
+      alert("Vui lòng nhập đầy đủ điểm cho các môn.");
+      return;
+    }
+
+  var diemTong = ly + hoa + sinh;
+  var diemTB = diemTong / 3;
+  document.write('<br>')
+  document.write('diem tong =' + diemTong)
+  document.write('<br>')
+  document.write('diem TB =' + diemTB)
+  }
+</script>

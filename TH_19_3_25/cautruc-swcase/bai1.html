@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 1</title>
+</head>
+<body>
+    <input type="text" id="browser" placeholder="Enter your browser">
+    <button onclick="checkBrowser()">Test</button>
+</body>
+</html>
+
+<script>
+    function checkBrowser(){
+        let browser = document.getElementById('browser').value;
+        switch (browser){
+            case 'Edge':
+                alert('You have got the Edge');
+                break;
+            case 'Chrome':
+            case 'Firefox':
+            case 'Safari':
+            case 'Opera':
+                alert('Ok we support these browsers too');
+                break;
+            default:
+                alert('We hope that this page looks ok');
+        }
+    }
+</script>

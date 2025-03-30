@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>heart</title>
+</head>
+<body>
+
+    <script>
+        function printHeartPattern() {
+            const size = 10;
+            let result = "";
+
+            for (let i = size / 2; i <= size; i += 2) {
+                let line = "";
+
+                // In khoảng trắng trước mỗi nửa trái tim
+                for (let j = 1; j < size - i; j += 2) {
+                    line += "&nbsp;";
+                }
+
+                // In nửa trái tim trái
+                for (let j = 1; j <= i; j++) {
+                    line += "*";
+                }
+
+                // In khoảng trắng giữa hai nửa trái tim
+                for (let j = 1; j <= size - i; j++) {
+                    line += "&nbsp;";
+                }
+
+                // In nửa trái tim phải
+                for (let j = 1; j <= i; j++) {
+                    line += "*";
+                }
+
+                result += line + "<br>";
+            }
+
+            // In phần dưới của trái tim
+            for (let i = size; i >= 1; i--) {
+                let line = "";
+
+                // In khoảng trắng đầu dòng
+                for (let j = i; j < size; j++) {
+                    line += "&nbsp;";
+                }
+
+                // In hình tam giác ngược
+                for (let j = 1; j <= (i * 2) - 1; j++) {
+                    line += "*";
+                }
+
+                result += line + "<br>";
+            }
+
+            document.write(result);
+        }
+
+        printHeartPattern();
+
+    </script>
+</body>
+</html>

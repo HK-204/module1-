@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rút tiền ATM</title>
+</head>
+<body>
+    <input type="number" id="sotien" placeholder="so tien muon rut">
+    <button onclick="ruttien()">Xac nhan</button>
+    <div id="result"></div>
+</body>
+</html>
+<script>
+    let sodu = 10000000;
+
+    function ruttien() {
+        let result = document.getElementById("result");
+
+        while (sodu > 0) {
+            let sotien = +document.getElementById("sotien").value;
+
+            if (0 < sotien && sotien <= sodu){
+                sodu -= sotien;
+                result.innerHTML +=
+                    "So tien muon rut:" + sotien + "<br>" +
+                    "So du con lai:" + sodu + "<br>";
+                if(sodu === 0) {
+                    result.innerHTML += "Ban da het tien<br>";
+                    break;
+                }
+            break;
+            } else if (sotien > sodu) {
+                result.innerHTML += "So tien khong hop le"
+                break;
+            }
+            else {
+                result.innerHTML += "vui long nhap so tien hop le"
+                break;
+            }
+        }
+    }
+</script>

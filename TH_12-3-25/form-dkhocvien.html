@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>form dk hoc vien</title>
+</head>
+<body>
+    <form>
+        <h2 style="color: blue">Dang ky hoc vien</h2>
+        <label for="name">Họ và tên:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="dob">Ngày sinh:</label><br>
+        <input type="date" id="dob" name="dob"><br><br>
+
+        <label>Giới tính:</label><br>
+        <input type="radio" id="male" name="gender" value="nam">
+        <label for="male">Nam</label>
+        <input type="radio" id="female" name="gender" value="nu">
+        <label for="female">Nữ</label><br><br>
+
+        <label for="address">Địa chỉ:</label><br>
+        <textarea id="address" name="address"></textarea><br><br>
+
+        <label for="class">Lớp:</label><br>
+        <select id="class" name="class">
+            <option value="">--- Chọn lớp ---</option>
+            <option value="class1">Lớp 1</option>
+            <option value="class2">Lớp 2</option>
+            <option value="class3">Lớp 3</option>
+        </select><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="phone">Điện thoại:</label><br>
+        <input type="tel" id="phone" name="phone"><br><br>
+
+        <input type="submit" value="Đăng ký">
+        <input type="reset" value="Nhập lại">
+    </form>
+</body>
+</html>

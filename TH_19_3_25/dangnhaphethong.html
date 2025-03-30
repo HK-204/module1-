@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dang nhap he thong</title>
+</head>
+<body>
+    <input type="text" id="username" placeholder="username">
+    <button onclick="login()">Log in</button>
+</body>
+</html>
+<script>
+    function login(){
+        var username = document.getElementById('username').value;
+        if (username == 'Admin'){
+            let password = prompt('Password', '');
+            if (password == 'TheMaster'){
+                alert('welcome')
+            }else if(password == null){
+                alert('cancelled')
+            }else {
+                alert('wrong password')
+            }
+        }else if(username == null){
+            alert('cancelled')
+        }else {
+            alert('i dont know you')
+        }
+    }
+</script>

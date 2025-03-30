@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>kiểm tra năm nhuận</title>
+</head>
+<body>
+    <input type="number" id="nam" name="nam">
+    <button onclick="nam()">kiểm tra</button>
+</body>
+</html>
+<script>
+    function nam(){
+        let nam = parseInt(document.getElementById('nam').value);
+        let namNhuan = false
+        if (nam % 4 == 0){
+            if (nam % 100 == 0){
+                if (nam % 400 == 0){
+                    namNhuan = true;
+                }
+            }
+            else {
+                namNhuan = true;
+            }
+        }
+
+        if (namNhuan){
+            document.write(nam + ' là năm nhuận')
+        }
+        else {
+            document.write(nam + ' không phải là năm nhuận')
+        }
+    }
+</script>

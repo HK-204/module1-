@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rap chieu phim</title>
+</head>
+<body>
+<table border="1">
+    <script>
+        function clickSeat(button) {
+            if (button.style.backgroundColor === "green") {
+                button.style.backgroundColor = "";
+            }else {
+                button.style.backgroundColor = "green";
+            }
+        }
+
+        for (let i = 1; i < 31; i++){
+            if ((i-1) % 6 === 0){
+                document.write("<tr>");
+            }
+            document.write("<td><button onclick='clickSeat(this)'>ghe "+ i +" </button></td>");
+            if (i % 6 === 0){
+                document.write("</tr>");
+            }
+        }
+    </script>
+</table>
+</body>
+</html>

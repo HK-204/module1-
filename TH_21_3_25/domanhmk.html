@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>kiem tra mat khau</title>
+</head>
+<body>
+    <input type="password" id="password" placeholder="password">
+    <p id="strength"></p>
+</body>
+</html>
+<script>
+    function testPass(password){
+        const strength = document.getElementById("strength");
+        if (password.length < 6) {
+            strength.textContent = 'Weak';
+            strength.style.color = 'red';
+        } else if (password.length >= 6 && password.length <= 9) {
+            strength.textContent = 'Normal';
+            strength.style.color = 'orange';
+        } else {
+            strength.textContent = 'Strong';
+            strength.style.color = 'green';
+        }
+    }
+    document.getElementById("password").addEventListener("keyup", function(event){
+        const password = document.getElementById("password").value;
+        testPass(password);
+    })
+</script>

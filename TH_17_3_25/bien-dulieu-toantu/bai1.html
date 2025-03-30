@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 1</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    let inputLy
+    let inputHoa
+    let inputSinh
+    inputLy = prompt("Diem Ly")
+    inputHoa = prompt("Diem Hoa")
+    inputSinh = prompt("Diem Sinh")
+    let vatLy = parseInt(inputLy)
+    let hoaHoc = parseInt(inputHoa)
+    let sinhHoc = parseInt(inputSinh)
+    let diemTong = vatLy + hoaHoc + sinhHoc
+    let diemTB = diemTong / 3
+    document.write('Điểm tổng = ' + diemTong)
+    document.write('<br>')
+    document.write('Điểm TB =' + diemTB)
+</script>

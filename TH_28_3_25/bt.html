@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>so lon nhat</title>
+</head>
+<body>
+  <input type="number" id="num" placeholder="nhap cac phan tu">
+  <input type="number" id="dem" placeholder="phan tu can dem">
+  <button onclick="add()">Add</button>
+  <button onclick="Tong()">Sum</button>
+  <button onclick="max()">Max</button>
+  <button onclick="demLap()">Count</button>
+  <script>
+    let arr = Array();
+    let sum = 0;
+
+    function add() {
+      let x = +document.getElementById("num").value;
+      if (x !== ""){
+          arr.push(+x);
+          document.getElementById("num").value = "";
+      }else {
+          alert("Nhap cac phan tu hop le");
+      }
+    }
+
+    function Tong() {
+        sum = 0;
+        for (let i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        alert(sum);
+    }
+
+    function max() {
+      let lonNhat = arr[0];
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > lonNhat) {
+          lonNhat = arr[i];
+        }
+      }
+      alert(lonNhat);
+    }
+
+    function demLap() {
+        let target = +document.getElementById("dem").value;
+        let count = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] === target) {
+                count++;
+            }
+        }
+        alert(count);
+    }
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECMA Script</title>
+</head>
+<body>
+  <label>What is the "official" name of Javescript</label>
+  <input type="text" id="answer" placeholder="answer">
+  <button onclick="checkAnswer()">Check</button>
+</body>
+</html>
+<script>
+  function checkAnswer() {
+    var answer = document.getElementById("answer").value;
+    if (answer === 'ECMAScript') {
+      document.write('true')
+    }else{
+      document.write('false')
+    }
+  }
+</script>
