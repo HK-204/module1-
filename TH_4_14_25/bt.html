@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bt</title>
+</head>
+<body>
+<script>
+    let boys = ["Nam", "Minh", "Hung", "Truong"];
+    let girls = ["Thao", "Hoa", "Nhung", "Quynh"];
+
+    function doiCho(arr) {
+        for (let i = 0; i < arr.length; i++) {
+            let j = i + 1;
+            if (j < arr.length) {
+                let swap = arr[i];
+                arr[i] = arr[j];
+                arr[j] = swap;
+            }
+        }
+        return arr;
+    }
+
+    let doiChoNam = doiCho(boys);
+    let doiChoNu = doiCho(girls);
+
+    let couples = [];
+    for (let i = 0; i < doiChoNam.length; i++) {
+        couples.push([doiChoNam[i], doiChoNu[i]]);
+    }
+
+    for (let i = 0; i < couples.length; i++) {
+        document.write("couple " + (i + 1) + " is " + couples[i][0] + " and " + couples[i][1] + "<br>");
+    }
+</script>
+</body>
+</html>

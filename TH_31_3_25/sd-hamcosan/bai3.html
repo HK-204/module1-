@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bai 3</title>
+</head>
+<body>
+<input type="text" id="text">
+<button onclick="convert()">Convert</button>
+
+<script>
+  function convert() {
+    let text = document.getElementById("text").value;
+    let arr = text.split("");
+    let result = [];
+
+    for (let i = 0; i < arr.length; i++) {
+      let char = arr[i];
+      if (char === char.toUpperCase()) {
+        result.push(char.toLowerCase());
+      } else {
+        result.push(char.toUpperCase());
+      }
+    }
+
+    let finalResult = result.join("");
+    alert(finalResult);
+  }
+</script>
+</body>
+</html>

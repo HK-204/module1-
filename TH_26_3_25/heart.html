@@ -1,64 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>heart</title>
+    <title>Hình Trái Tim</title>
 </head>
 <body>
+<h2>Hình trái tim</h2>
+<pre id="heartOutput"></pre>
 
-    <script>
-        function printHeartPattern() {
-            const size = 10;
-            let result = "";
+<script>
+    function drawHeart() {
+        let heart = '';
+        let size = 12;
 
-            for (let i = size / 2; i <= size; i += 2) {
-                let line = "";
-
-                // In khoảng trắng trước mỗi nửa trái tim
-                for (let j = 1; j < size - i; j += 2) {
-                    line += "&nbsp;";
-                }
-
-                // In nửa trái tim trái
-                for (let j = 1; j <= i; j++) {
-                    line += "*";
-                }
-
-                // In khoảng trắng giữa hai nửa trái tim
-                for (let j = 1; j <= size - i; j++) {
-                    line += "&nbsp;";
-                }
-
-                // In nửa trái tim phải
-                for (let j = 1; j <= i; j++) {
-                    line += "*";
-                }
-
-                result += line + "<br>";
+        for (let i = size / 2; i < size; i += 2) {
+            for (let j = 1; j < size - i; j += 2) {
+                heart += ' ';
             }
-
-            // In phần dưới của trái tim
-            for (let i = size; i >= 1; i--) {
-                let line = "";
-
-                // In khoảng trắng đầu dòng
-                for (let j = i; j < size; j++) {
-                    line += "&nbsp;";
-                }
-
-                // In hình tam giác ngược
-                for (let j = 1; j <= (i * 2) - 1; j++) {
-                    line += "*";
-                }
-
-                result += line + "<br>";
+            for (let j = 1; j <= i; j++) {
+                heart += '*';
             }
-
-            document.write(result);
+            for (let j = 1; j <= size - i; j++) {
+                heart += ' ';
+            }
+            for (let j = 1; j <= i; j++) {
+                heart += '*';
+            }
+            heart += '\n';
         }
 
-        printHeartPattern();
+        for (let i = size; i >= 1; i--) {
+            for (let j = 0; j < size - i; j++) {
+                heart += ' ';
+            }
+            for (let j = 1; j <= (i * 2) - 1; j++) {
+                heart += '*';
+            }
+            heart += '\n';
+        }
 
-    </script>
+        document.getElementById('heartOutput').innerText = heart;
+    }
+
+    drawHeart();
+</script>
 </body>
 </html>

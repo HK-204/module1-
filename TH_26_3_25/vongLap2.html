@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài tập JavaScript cơ bản</title>
+</head>
+<body>
+<h1>Bài tập JavaScript</h1>
+
+<div>
+    <h2>Bài 1: In dãy Fibonacci</h2>
+    <input type="number" id="fiboCount" placeholder="Nhập số lượng"> <button onclick="printFibonacci()">In</button>
+    <div id="fiboOutput" class="output"></div>
+</div>
+
+<div>
+    <h2>Bài 2: Giai thừa</h2>
+    <input type="number" id="factorialInput" placeholder="Nhập số nguyên dương"> <button onclick="tinhGiaiThua()">Tính</button>
+    <div id="factorialOutput" class="output"></div>
+</div>
+
+<div>
+    <h2>Bài 3: Tam giác vuông (góc vuông dưới trái)</h2>
+    <input type="number" id="triangleSize" placeholder="Chiều cao"> <button onclick="inTamGiacVuong()">In</button>
+    <div id="triangleOutput" class="output"></div>
+</div>
+
+<div>
+    <h2>Bài 4: Hình chữ nhật</h2>
+    <input type="number" id="rectWidth" placeholder="Chiều rộng">
+    <input type="number" id="rectHeight" placeholder="Chiều cao">
+    <button onclick="inHinhChuNhat()">In</button>
+    <div id="rectOutput" class="output"></div>
+</div>
+
+<div>
+    <h2>Bài 5: Tính lãi ngân hàng (lãi kép)</h2>
+    <input type="number" id="money" placeholder="Số tiền ban đầu">
+    <input type="number" id="months" placeholder="Số tháng">
+    <input type="number" id="rate" placeholder="Lãi suất hàng tháng (%)">
+    <button onclick="tinhLaiKep()">Tính</button>
+    <div id="laiOutput" class="output"></div>
+</div>
+
+<script>
+    function printFibonacci() {
+        const count = Number(document.getElementById("fiboCount").value);
+        let a = 0, b = 1, result = "";
+        for (let i = 0; i < count; i++) {
+            result += a + " ";
+            const temp = a + b;
+            a = b;
+            b = temp;
+        }
+        document.getElementById("fiboOutput").innerText = result.trim();
+    }
+
+    function tinhGiaiThua() {
+        const n = Number(document.getElementById("factorialInput").value);
+        let result = 1;
+        for (let i = 1; i <= n; i++) {
+            result *= i;
+        }
+        document.getElementById("factorialOutput").innerText = `${n}! = ${result}`;
+    }
+
+    function inTamGiacVuong() {
+        const size = Number(document.getElementById("triangleSize").value);
+        let triangle = "";
+        for (let i = 1; i <= size; i++) {
+            triangle += "*".repeat(i) + "\n";
+        }
+        document.getElementById("triangleOutput").innerText = triangle;
+    }
+
+    function inHinhChuNhat() {
+        const w = Number(document.getElementById("rectWidth").value);
+        const h = Number(document.getElementById("rectHeight").value);
+        let result = "";
+        for (let i = 0; i < h; i++) {
+            result += "*".repeat(w) + "\n";
+        }
+        document.getElementById("rectOutput").innerText = result;
+    }
+
+    function tinhLaiKep() {
+        let money = Number(document.getElementById("money").value);
+        const months = Number(document.getElementById("months").value);
+        const rate = Number(document.getElementById("rate").value) / 100;
+
+        for (let i = 0; i < months; i++) {
+            money *= (1 + rate);
+        }
+        document.getElementById("laiOutput").innerText = `Tổng tiền sau ${months} tháng: ${money.toFixed(2)} VNĐ`;
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bai 2</title>
+</head>
+<body>
+<input id="tuoi2" type="number" placeholder="Nhập tuổi">
+<button onclick="kiemTraTuoi()">Kiểm tra</button>
+<p id="kq2"></p>
+
+<script>
+  function kiemTraTuoi() {
+    var tuoi = +document.getElementById("tuoi2").value;
+    if (tuoi >= 15) {
+      document.getElementById("kq2").innerText = "Đủ điều kiện vào lớp 10";
+    } else {
+      document.getElementById("kq2").innerText = "Chưa đủ điều kiện";
+    }
+  }
+</script>
+</body>
+</html>

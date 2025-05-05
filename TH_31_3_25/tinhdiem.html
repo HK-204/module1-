@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tinh diem</title>
+</head>
+<body>
+  <script>
+    let ten_sv = ["Dung", "Tram", "Hai"];
+    let mon = ["Toan", "Ly", "Hoa"];
+    let diem = [
+            [10, 9, 9],
+            [9, 9, 10],
+            [10, 10, 10]
+    ];
+
+    for (let a = 0; a < diem.length; a++) {
+      document.write("Diem cua" + ten_sv[a] + "<br>");
+      let diemTong = 0;
+
+      for (let b = 0; b < diem[a].length; b++) {
+        document.write("Mon" + mon[b] + ": " +diem[a][b] + "<br>");
+        diemTong += diem[a][b];
+      }
+
+      let diemTB = diemTong/diem[a].length;
+      document.write("Diem trung binh la:" + diemTB + "<br><br>");
+    }
+  </script>
+</body>
+</html>

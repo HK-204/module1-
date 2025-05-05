@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Từ Điển Anh - Việt - Nhật</title>
+</head>
+<body>
+<h1>Từ Điển Anh - Việt - Nhật</h1>
+
+<label for="nguonNgonNgu">Chọn ngôn ngữ nguồn:</label>
+<select id="nguonNgonNgu">
+  <option value="en">Tiếng Anh</option>
+  <option value="vn">Tiếng Việt</option>
+  <option value="ja">Tiếng Nhật</option>
+</select>
+
+<button type="button" onclick="swapLanguages()">Hoán đổi</button>
+
+<label for="duoiNgonNgu">Chọn ngôn ngữ đích:</label>
+<select id="duoiNgonNgu">
+  <option value="vn">Tiếng Việt</option>
+  <option value="en">Tiếng Anh</option>
+  <option value="ja">Tiếng Nhật</option>
+</select>
+
+<input type="text" id="tuCanTim" placeholder="Nhập từ cần dịch">
+<button type="button" onclick="traTu()">Tìm Kiếm</button>
+<div id="ketQua"></div>
+
+<script>
+  let tuDienAnh = ["apple", "dog", "cat", "car", "hello"];
+  let tuDienViet = ["quả táo", "con chó", "con mèo", "xe hơi", "xin chào"];
+  let tuDienNhat = ["りんご", "犬", "猫", "車", "こんにちは"];
+
+  let tuDienDichAnhViet = ["quả táo", "con chó", "con mèo", "xe hơi", "xin chào"];
+  let tuDienDichAnhNhat = ["りんご", "犬", "猫", "車", "こんにちは"];
+  let tuDienDichVietAnh = ["apple", "dog", "cat", "car", "hello"];
+  let tuDienDichVietNhat = ["りんご", "犬", "猫", "車", "こんにちは"];
+  let tuDienDichNhatAnh = ["apple", "dog", "cat", "car", "hello"];
+  let tuDienDichNhatViet = ["quả táo", "con chó", "con mèo", "xe hơi", "xin chào"];
+
+  function traTu() {
+    let tuNhap = document.getElementById("tuCanTim").value.toLowerCase();
+    let nguonNgonNgu = document.getElementById("nguonNgonNgu").value;
+    let duoiNgonNgu = document.getElementById("duoiNgonNgu").value;
+    let ketQua = "Không tìm thấy từ này!";
+
+    if (nguonNgonNgu === "en") {
+      if (duoiNgonNgu === "vn") {
+        ketQua = timKiem(tuDienAnh, tuNhap, tuDienDichAnhViet);
+      } else if (duoiNgonNgu === "ja") {
+        ketQua = timKiem(tuDienAnh, tuNhap, tuDienDichAnhNhat);
+      }
+    } else if (nguonNgonNgu === "vn") {
+      if (duoiNgonNgu === "en") {
+        ketQua = timKiem(tuDienViet, tuNhap, tuDienDichVietAnh);
+      } else if (duoiNgonNgu === "ja") {
+        ketQua = timKiem(tuDienViet, tuNhap, tuDienDichVietNhat);
+      }
+    } else if (nguonNgonNgu === "ja") {
+      if (duoiNgonNgu === "en") {
+        ketQua = timKiem(tuDienNhat, tuNhap, tuDienDichNhatAnh);
+      } else if (duoiNgonNgu === "vn") {
+        ketQua = timKiem(tuDienNhat, tuNhap, tuDienDichNhatViet);
+      }
+    }
+
+    alert(ketQua);
+  }
+
+  function timKiem(tuDien, tuNhap, tuDienDich) {
+    for (let i = 0; i < tuDien.length; i++) {
+      if (tuNhap === tuDien[i].toLowerCase()) {
+        return "Kết quả: " + tuDienDich[i];
+      }
+    }
+    return "Không tìm thấy từ này!";
+  }
+
+  function swapLanguages() {
+    let nguonNgonNgu = document.getElementById("nguonNgonNgu");
+    let duoiNgonNgu = document.getElementById("duoiNgonNgu");
+
+    let swap = nguonNgonNgu.value;
+    nguonNgonNgu.value = duoiNgonNgu.value;
+    duoiNgonNgu.value = swap;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cat and Rat</title>
+</head>
+<body>
+<script>
+  class Rat {
+    constructor(name, weight, speed) {
+      this.name = name;
+      this.weight = weight;
+      this.speed = speed;
+      this.alive = true;
+    }
+
+    sound() {
+      console.log(`${this.name} (Chuột): "chít chít"`);
+    }
+  }
+
+  class Cat {
+    constructor(name, weight, maxSpeed) {
+      this.name = name;
+      this.weight = weight;
+      this.maxSpeed = maxSpeed;
+    }
+
+    sound() {
+      console.log(`${this.name} (Mèo): "meo meo"`);
+    }
+
+    catchRat(rat) {
+      if (!(rat instanceof Rat)) {
+        console.log(`${this.name} chỉ bắt được đối tượng là chuột.`);
+        return false;
+      }
+
+      if (!rat.alive) {
+        console.log(`${this.name} không cần bắt chuột đã chết (${rat.name}).`);
+        return false;
+      }
+
+      if (this.maxSpeed > rat.speed) {
+        console.log(`${this.name} đã bắt được ${rat.name}.`);
+        return true;
+      } else {
+        console.log(`${this.name} không bắt kịp ${rat.name}.`);
+        return false;
+      }
+    }
+
+    eatRat(rat) {
+      if (!(rat instanceof Rat)) {
+        console.log(`${this.name} chỉ ăn được chuột.`);
+        return;
+      }
+
+      if (!rat.alive) {
+        console.log(`${rat.name} đã chết, ${this.name} ăn nó.`);
+        this.weight += rat.weight;
+      } else {
+        console.log(`${rat.name} vẫn còn sống, không thể ăn.`);
+        return;
+      }
+    }
+
+    killAndEatRat(rat) {
+      if (this.catchRat(rat)) {
+        rat.alive = false;
+        console.log(`${this.name} giết ${rat.name}.`);
+        this.eatRat(rat);
+      }
+    }
+  }
+
+  const rat1 = new Rat("Jerry", 0.5, 10);
+  const rat2 = new Rat("Speedy", 0.3, 20);
+  const cat1 = new Cat("Tom", 5, 15);
+
+  rat1.sound();
+  cat1.sound();
+
+  console.log("🧪 Thử bắt Jerry:");
+  cat1.killAndEatRat(rat1);
+
+  console.log("➡ Khối lượng mới của Tom:", cat1.weight);
+
+  console.log("🧪 Thử bắt Speedy:");
+  cat1.killAndEatRat(rat2);
+
+  console.log("➡ Khối lượng cuối của Tom:", cat1.weight);
+</script>
+</body>
+</html>

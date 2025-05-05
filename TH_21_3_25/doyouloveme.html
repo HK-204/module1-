@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Do you love me?</title>
+</head>
+<body>
+
+<h2>Bạn có yêu tôi không?</h2>
+
+<button onclick="sayYes()">YES</button>
+<button id="noBtn" onmouseover="runAway()">NO</button>
+
+<p id="result"></p>
+
+<script>
+  function sayYes() {
+    document.getElementById("result").innerText = "<3";
+  }
+
+  function runAway() {
+    var x = Math.floor(Math.random() * 90);
+    var y = Math.floor(Math.random() * 90);
+
+    var noBtn = document.getElementById("noBtn");
+    noBtn.style.position = "absolute";
+    noBtn.style.left = x + "%";
+    noBtn.style.top = y + "%";
+  }
+</script>
+
+</body>
+</html>

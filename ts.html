@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuyển số thành chữ</title>
+</head>
+<body>
+
+<h3>Nhập số từ 1 đến 999:</h3>
+<input type="number" id="numberInput" placeholder="Nhập số">
+<button onclick="chuyenSo()">Chuyển</button>
+
+<p id="ketqua"></p>
+
+<script>
+    const chuSo = ["không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
+
+    function docHangChucVaDonVi(chuc, donvi, coSoHangTram) {
+        let text = "";
+
+        if (chuc === 0 && donvi === 0) return "";
+
+        if (chuc === 0 && coSoHangTram) {
+            text += " linh ";
+        } else if (chuc === 1) {
+            text += " mười ";
+        } else if (chuc > 1) {
+            text += " " + chuSo[chuc] + " mươi ";
+        }
+
+        if (donvi === 1 && chuc > 1) {
+            text += " mốt";
+        } else if (donvi === 5 && chuc > 0) {
+            text += " lăm";
+        } else if (donvi !== 0) {
+            text += chuSo[donvi];
+        }
+
+        return text.trim();
+    }
+
+    function numberToText(num) {
+        if (num < 1 || num > 999) return "Chỉ hỗ trợ từ 1 đến 999";
+
+        let tram = Math.floor(num / 100);
+        let chuc = Math.floor((num % 100) / 10);
+        let donvi = num % 10;
+
+        let text = "";
+
+        if (tram > 0) {
+            text += chuSo[tram] + " trăm";
+        }
+
+        text += " " + docHangChucVaDonVi(chuc, donvi, tram > 0);
+
+        return text.trim();
+    }
+
+    function chuyenSo() {
+        const num = +document.getElementById("numberInput").value;
+        const ketqua = numberToText(num);
+        document.getElementById("ketqua").innerText = ketqua;
+    }
+</script>
+
+</body>
+</html>

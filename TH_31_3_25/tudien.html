@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Từ Điển Anh - Việt</title>
+</head>
+<body>
+  <h1>Từ Điển Anh - Việt</h1>
+  <input type="text" id="tuCanTim" placeholder="Nhập từ tiếng Anh">
+  <button type="button" onclick="traTu()">Tìm Kiếm</button>
+  <div id="ketQua"></div>
+
+  <script>
+    let tiengAnh = ["apple", "dog", "cat", "car", "hello"];
+    let tiengViet = ["quả táo", "con chó", "con mèo", "xe hơi", "xin chào"];
+
+    function traTu() {
+      let tuNhap = document.getElementById("tuCanTim").value.toLowerCase();
+      let index = tiengAnh.indexOf(tuNhap);
+
+      if (index !== -1) {
+        document.getElementById("ketQua").innerHTML =
+                "Từ tiếng Việt: " + tiengViet[index];
+      } else {
+        document.getElementById("ketQua").innerHTML =
+                "Không tìm thấy từ này!";
+      }
+    }
+  </script>
+</body>
+</html>

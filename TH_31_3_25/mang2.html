@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!-- Bài 1 -->
+<h3>Bài 1: In phần tử mảng 2 chiều</h3>
+<button onclick="bai1()">Chạy Bài 1</button>
+<pre id="output1"></pre>
+
+<!-- Bài 2 -->
+<h3>Bài 2: Đảo ngược và in chuỗi từ mảng ký tự</h3>
+<button onclick="bai2()">Chạy Bài 2</button>
+<pre id="output2"></pre>
+
+<!-- Bài 3 -->
+<h3>Bài 3: Đếm số ký tự số (0-9) trong mảng</h3>
+<button onclick="bai3()">Chạy Bài 3</button>
+<pre id="output3"></pre>
+
+<!-- Bài 4 -->
+<h3>Bài 4: Đếm số từ trong chuỗi</h3>
+<input type="text" id="text4" placeholder="Nhập chuỗi...">
+<button onclick="bai4()">Chạy Bài 4</button>
+<pre id="output4"></pre>
+
+<!-- Bài 5 -->
+<h3>Bài 5: So sánh hai chuỗi</h3>
+<input type="text" id="str5a" placeholder="Chuỗi thứ nhất">
+<input type="text" id="str5b" placeholder="Chuỗi thứ hai">
+<button onclick="bai5()">So sánh</button>
+<pre id="output5"></pre>
+
+<!-- Bài 6 -->
+<h3>Bài 6: Thay ký tự '-' thành '_'</h3>
+<input type="text" id="text6" placeholder="Nhập mảng ký tự (vd: a,-,b,-,c)">
+<button onclick="bai6()">Chạy Bài 6</button>
+<pre id="output6"></pre>
+
+<script>
+  function bai1() {
+    let a = [
+      [1, 2, 1, 24],
+      [8, 11, 9, 4],
+      [7, 0, 7, 27],
+      [7, 4, 28, 14],
+      [3, 10, 26, 7]
+    ];
+    let result = "";
+    for (let i = 0; i < a.length; i++) {
+      result += "row " + i + "\n";
+      for (let j = 0; j < a[i].length; j++) {
+        result += " " + a[i][j] + "\n";
+      }
+    }
+    document.getElementById("output1").textContent = result;
+  }
+
+  function bai2() {
+    let arr = ['c', 's', 'c', '2', '6', '1'];
+    let result = "";
+    for (let i = arr.length - 1; i >= 0; i--) {
+      result += arr[i];
+    }
+    document.getElementById("output2").textContent = result;
+  }
+
+  function bai3() {
+    let arr = ['a', '1', 'b', '5', 'c', '0', 'd', '9', 'x'];
+    let count = 0;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] >= '0' && arr[i] <= '9') {
+        count++;
+      }
+    }
+    document.getElementById("output3").textContent = "Số ký tự số: " + count;
+  }
+
+  function bai4() {
+    let text = document.getElementById("text4").value.trim();
+    if (text === "") {
+      document.getElementById("output4").textContent = "Không có từ nào.";
+      return;
+    }
+    let words = text.split(/\s+/);
+    document.getElementById("output4").textContent = "Số từ: " + words.length;
+  }
+
+  function bai5() {
+    let str1 = document.getElementById("str5a").value;
+    let str2 = document.getElementById("str5b").value;
+    let result = (str1 === str2) ? "Hai chuỗi giống nhau" : "Hai chuỗi KHÔNG giống nhau";
+    document.getElementById("output5").textContent = result;
+  }
+
+  function bai6() {
+    let input = document.getElementById("text6").value;
+    let arr = input.split(",");
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] === "-") {
+        arr[i] = "_";
+      }
+    }
+    document.getElementById("output6").textContent = "Kết quả: " + arr.join(",");
+  }
+</script>
+</body>
+</html>

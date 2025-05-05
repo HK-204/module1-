@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h2>1. Tính bình phương</h2>
+    <input type="number" id="squareInput">
+    <button onclick="showSquare()">Tính bình phương</button>
+    <p id="squareResult"></p>
+</section>
+
+<section>
+    <h2>2. Diện tích và chu vi hình tròn</h2>
+    <input type="number" id="circleRadius" placeholder="Nhập bán kính">
+    <button onclick="showCircleArea()">Tính diện tích</button>
+    <button onclick="showCirclePerimeter()">Tính chu vi</button>
+    <p id="circleResult"></p>
+</section>
+
+<section>
+    <h2>3. Tính giai thừa</h2>
+    <input type="number" id="factorialInput">
+    <button onclick="showFactorial()">Tính giai thừa</button>
+    <p id="factorialResult"></p>
+</section>
+
+<section>
+    <h2>4. Kiểm tra ký tự số</h2>
+    <input type="text" id="charInput" maxlength="1">
+    <button onclick="checkDigitChar()">Kiểm tra</button>
+    <p id="digitResult"></p>
+</section>
+
+<section>
+    <h2>5. Tìm số nguyên nhỏ nhất</h2>
+    <input type="number" id="min1">
+    <input type="number" id="min2">
+    <input type="number" id="min3">
+    <button onclick="findMin()">Tìm số nhỏ nhất</button>
+    <p id="minResult"></p>
+</section>
+
+<section>
+    <h2>6. Kiểm tra số nguyên dương</h2>
+    <input type="number" id="positiveInput">
+    <button onclick="checkPositive()">Kiểm tra</button>
+    <p id="positiveResult"></p>
+</section>
+
+<section>
+    <h2>7. Đổi chỗ hai số nguyên</h2>
+    <input type="number" id="swap1">
+    <input type="number" id="swap2">
+    <button onclick="swapNumbers()">Đổi chỗ</button>
+    <p id="swapResult"></p>
+</section>
+
+<section>
+    <h2>8. Đảo ngược mảng</h2>
+    <input type="text" id="arrayInput" placeholder="Nhập mảng cách nhau bằng dấu phẩy">
+    <button onclick="reverseArray()">Đảo mảng</button>
+    <p id="reverseResult"></p>
+</section>
+
+<section>
+    <h2>9. Kiểm tra ký tự trong mảng</h2>
+    <input type="text" id="charArray" placeholder="Nhập mảng ký tự cách nhau bằng dấu phẩy">
+    <input type="text" id="charToFind" maxlength="1" placeholder="Nhập ký tự">
+    <button onclick="checkCharInArray()">Kiểm tra</button>
+    <p id="charArrayResult"></p>
+</section>
+
+<script>
+    function square(x) {
+        return x * x;
+    }
+    function showSquare() {
+        const x = parseFloat(document.getElementById("squareInput").value);
+        document.getElementById("squareResult").innerText = "Bình phương: " + square(x);
+    }
+
+    function circleArea(r) {
+        return Math.PI * r * r;
+    }
+    function circlePerimeter(r) {
+        return 2 * Math.PI * r;
+    }
+    function showCircleArea() {
+        const r = parseFloat(document.getElementById("circleRadius").value);
+        document.getElementById("circleResult").innerText = "Diện tích: " + circleArea(r).toFixed(2);
+    }
+    function showCirclePerimeter() {
+        const r = parseFloat(document.getElementById("circleRadius").value);
+        document.getElementById("circleResult").innerText = "Chu vi: " + circlePerimeter(r).toFixed(2);
+    }
+
+    function factorial(n) {
+        if (n < 0) return "Không tính được giai thừa âm";
+        let result = 1;
+        for (let i = 2; i <= n; i++) result *= i;
+        return result;
+    }
+    function showFactorial() {
+        const n = parseInt(document.getElementById("factorialInput").value);
+        document.getElementById("factorialResult").innerText = "Giai thừa: " + factorial(n);
+    }
+
+    function isDigit(char) {
+        return !isNaN(char) && char.trim() !== '';
+    }
+    function checkDigitChar() {
+        const char = document.getElementById("charInput").value;
+        const result = isDigit(char);
+        document.getElementById("digitResult").innerText = result ? "Là ký tự số" : "Không phải ký tự số";
+    }
+
+    function minOfThree(a, b, c) {
+        return Math.min(a, b, c);
+    }
+    function findMin() {
+        const a = parseInt(document.getElementById("min1").value);
+        const b = parseInt(document.getElementById("min2").value);
+        const c = parseInt(document.getElementById("min3").value);
+        document.getElementById("minResult").innerText = "Số nhỏ nhất: " + minOfThree(a, b, c);
+    }
+
+    function isPositiveInteger(n) {
+        return Number.isInteger(n) && n > 0;
+    }
+    function checkPositive() {
+        const n = parseFloat(document.getElementById("positiveInput").value);
+        document.getElementById("positiveResult").innerText = isPositiveInteger(n) ? "Là số nguyên dương" : "Không phải số nguyên dương";
+    }
+
+    function swap(a, b) {
+        return [b, a];
+    }
+    function swapNumbers() {
+        let a = parseInt(document.getElementById("swap1").value);
+        let b = parseInt(document.getElementById("swap2").value);
+        [a, b] = swap(a, b);
+        document.getElementById("swapResult").innerText = "Sau khi đổi chỗ: a = " + a + ", b = " + b;
+    }
+
+    function reverseArr(arr) {
+        return arr.reverse();
+    }
+    function reverseArray() {
+        const input = document.getElementById("arrayInput").value;
+        let arr = input.split(",").map(Number);
+        document.getElementById("reverseResult").innerText = "Mảng đảo ngược: " + reverseArr(arr).join(", ");
+    }
+
+    function countCharInArray(arr, char) {
+        let count = 0;
+        for (let c of arr) {
+            if (c === char) count++;
+        }
+        return count > 0 ? count : -1;
+    }
+    function checkCharInArray() {
+        const arr = document.getElementById("charArray").value.split(",").map(c => c.trim());
+        const char = document.getElementById("charToFind").value.trim();
+        const result = countCharInArray(arr, char);
+        if (result === -1) {
+            document.getElementById("charArrayResult").innerText = "Không tìm thấy ký tự trong mảng.";
+        } else {
+            document.getElementById("charArrayResult").innerText = "Ký tự xuất hiện " + result + " lần.";
+        }
+    }
+</script>
+
+</body>
+</html>

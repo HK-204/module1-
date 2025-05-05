@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12 bai cau truc dieu kien 2</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài tập JavaScript cơ bản</title>
+</head>
+<body>
+<h2>Bài tập JavaScript cơ bản</h2>
+
+<!-- Bài 1: Độ C sang độ F -->
+<h3>Bài 1: Độ C sang độ F</h3>
+<input id="c1" type="number" placeholder="Độ C">
+<button onclick="convertCtoF()">Chuyển đổi</button>
+<p id="kq1"></p>
+
+<!-- Bài 2: Mét sang feet -->
+<h3>Bài 2: Mét sang feet</h3>
+<input id="m2" type="number" placeholder="Mét">
+<button onclick="convertToFeet()">Chuyển đổi</button>
+<p id="kq2"></p>
+
+<!-- Bài 3: Diện tích hình vuông -->
+<h3>Bài 3: Diện tích hình vuông</h3>
+<input id="a3" type="number" placeholder="Cạnh a">
+<button onclick="tinhVuong()">Tính</button>
+<p id="kq3"></p>
+
+<!-- Bài 4: Diện tích hình chữ nhật -->
+<h3>Bài 4: Diện tích hình chữ nhật</h3>
+<input id="a4" type="number" placeholder="Cạnh a">
+<input id="b4" type="number" placeholder="Cạnh b">
+<button onclick="tinhChuNhat()">Tính</button>
+<p id="kq4"></p>
+
+<!-- Bài 5: Diện tích tam giác vuông -->
+<h3>Bài 5: Diện tích tam giác vuông</h3>
+<input id="a5" type="number" placeholder="Cạnh a">
+<input id="b5" type="number" placeholder="Cạnh b">
+<button onclick="tinhTamGiac()">Tính</button>
+<p id="kq5"></p>
+
+<!-- Bài 6: Giải phương trình bậc 1 -->
+<h3>Bài 6: Giải PT bậc 1</h3>
+<input id="a6" type="number" placeholder="a">
+<input id="b6" type="number" placeholder="b">
+<button onclick="giaiPT1()">Giải</button>
+<p id="kq6"></p>
+
+<!-- Bài 7: Giải phương trình bậc 2 -->
+<h3>Bài 7: Giải PT bậc 2</h3>
+<input id="a7" type="number" placeholder="a">
+<input id="b7" type="number" placeholder="b">
+<input id="c7" type="number" placeholder="c">
+<button onclick="giaiPT2()">Giải</button>
+<p id="kq7"></p>
+
+<!-- Bài 8: Kiểm tra tuổi -->
+<h3>Bài 8: Kiểm tra tuổi</h3>
+<input id="tuoi8" type="number" placeholder="Nhập tuổi">
+<button onclick="kiemTraTuoi()">Kiểm tra</button>
+<p id="kq8"></p>
+
+<!-- Bài 9: Kiểm tra tam giác -->
+<h3>Bài 9: Kiểm tra tam giác</h3>
+<input id="a9" type="number" placeholder="a">
+<input id="b9" type="number" placeholder="b">
+<input id="c9" type="number" placeholder="c">
+<button onclick="kiemTraTamGiac()">Kiểm tra</button>
+<p id="kq9"></p>
+
+<!-- Bài 10: Giá điện -->
+<h3>Bài 10: Tính giá điện</h3>
+<input id="soDien" type="number" placeholder="Số kWh">
+<button onclick="tinhDien()">Tính</button>
+<p id="kq10"></p>
+
+<!-- Bài 11: Thuế thu nhập cá nhân -->
+<h3>Bài 11: Tính thuế TNCN</h3>
+<input id="thuNhap" type="number" placeholder="Thu nhập/tháng (triệu)">
+<button onclick="tinhThue()">Tính</button>
+<p id="kq11"></p>
+
+<!-- Bài 12: Lãi ngân hàng -->
+<h3>Bài 12: Tính lãi ngân hàng</h3>
+<input id="tienGoc" type="number" placeholder="Tiền gốc">
+<input id="thang" type="number" placeholder="Số tháng">
+<input id="laiSuat" type="number" placeholder="Lãi suất %/tháng">
+<button onclick="tinhLai()">Tính</button>
+<p id="kq12"></p>
+
+<script>
+  function convertCtoF() {
+    var doC = +document.getElementById("c1").value;
+    var doF = doC * 9 / 5 + 32;
+    document.getElementById("kq1").innerText = "Độ F: " + doF;
+  }
+  function convertToFeet() {
+    var m = +document.getElementById("m2").value;
+    var ft = m * 3.2808;
+    document.getElementById("kq2").innerText = "Feet: " + ft;
+  }
+  function tinhVuong() {
+    var a = +document.getElementById("a3").value;
+    var s = a * a;
+    document.getElementById("kq3").innerText = "Diện tích: " + s;
+  }
+  function tinhChuNhat() {
+    var a = +document.getElementById("a4").value;
+    var b = +document.getElementById("b4").value;
+    var s = a * b;
+    document.getElementById("kq4").innerText = "Diện tích: " + s;
+  }
+  function tinhTamGiac() {
+    var a = +document.getElementById("a5").value;
+    var b = +document.getElementById("b5").value;
+    var s = (a * b) / 2;
+    document.getElementById("kq5").innerText = "Diện tích: " + s;
+  }
+  function giaiPT1() {
+    var a = +document.getElementById("a6").value;
+    var b = +document.getElementById("b6").value;
+    if (a === 0) {
+      if (b === 0) document.getElementById("kq6").innerText = "Vô số nghiệm";
+      else document.getElementById("kq6").innerText = "Vô nghiệm";
+    } else {
+      var x = -b / a;
+      document.getElementById("kq6").innerText = "Nghiệm x = " + x;
+    }
+  }
+  function giaiPT2() {
+    var a = +document.getElementById("a7").value;
+    var b = +document.getElementById("b7").value;
+    var c = +document.getElementById("c7").value;
+    if (a === 0) {
+      document.getElementById("kq7").innerText = "Không phải PT bậc 2";
+    } else {
+      var delta = b * b - 4 * a * c;
+      if (delta < 0) {
+        document.getElementById("kq7").innerText = "Vô nghiệm";
+      } else if (delta === 0) {
+        var x = -b / (2 * a);
+        document.getElementById("kq7").innerText = "Nghiệm kép x = " + x;
+      } else {
+        var x1 = (-b + Math.sqrt(delta)) / (2 * a);
+        var x2 = (-b - Math.sqrt(delta)) / (2 * a);
+        document.getElementById("kq7").innerText = "x1 = " + x1 + ", x2 = " + x2;
+      }
+    }
+  }
+  function kiemTraTuoi() {
+    var t = +document.getElementById("tuoi8").value;
+    if (t > 0 && t < 120) document.getElementById("kq8").innerText = "Đây là tuổi hợp lệ";
+    else document.getElementById("kq8").innerText = "Không phải là tuổi của người";
+  }
+  function kiemTraTamGiac() {
+    var a = +document.getElementById("a9").value;
+    var b = +document.getElementById("b9").value;
+    var c = +document.getElementById("c9").value;
+    if (a > 0 && b > 0 && c > 0 && a + b > c && b + c > a && a + c > b) {
+      document.getElementById("kq9").innerText = "Là tam giác";
+    } else {
+      document.getElementById("kq9").innerText = "Không phải tam giác";
+    }
+  }
+  function tinhDien() {
+    var s = +document.getElementById("soDien").value;
+    var tien = 0;
+    if (s <= 50) tien = s * 1678;
+    else if (s <= 100) tien = 50 * 1678 + (s - 50) * 1734;
+    else if (s <= 200) tien = 50 * 1678 + 50 * 1734 + (s - 100) * 2014;
+    else tien = 50 * 1678 + 50 * 1734 + 100 * 2014 + (s - 200) * 2536;
+    document.getElementById("kq10").innerText = "Tiền điện: " + tien + " VND";
+  }
+  function tinhThue() {
+    var tn = +document.getElementById("thuNhap").value;
+    var thue = 0;
+    if (tn <= 5) thue = tn * 0.05;
+    else if (tn <= 10) thue = tn * 0.1;
+    else if (tn <= 18) thue = tn * 0.15;
+    else thue = tn * 0.2;
+    document.getElementById("kq11").innerText = "Thuế TNCN: " + thue + " triệu";
+  }
+  function tinhLai() {
+    var tien = +document.getElementById("tienGoc").value;
+    var thang = +document.getElementById("thang").value;
+    var lai = +document.getElementById("laiSuat").value / 100;
+    for (var i = 1; i <= thang; i++) tien += tien * lai;
+    document.getElementById("kq12").innerText = "Tổng sau " + thang + " tháng: " + tien.toFixed(2) + " VND";
+  }
+</script>
+</body>
+</html>
+
+</body>
+</html>

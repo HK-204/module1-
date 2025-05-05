@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Objects</title>
+</head>
+<body>
+<div id="game"></div>
+<script>
+    function Hero(image, top, left, size, speed){
+        this.image = image;
+        this.top = top;
+        this.left = left;
+        this.size = size;
+        this.speed = speed;
+
+        this.getHeroElement = function(){
+            return '<img width="'+ this.size + '"' +
+                ' height="'+ this.size + '"' +
+                ' src="' + this.image +'"' +
+                ' style="top: '+this.top+'px; left:'+this.left+'px;position:absolute;" />';
+        }
+
+        this.moveRight = function(){
+            this.left += this.speed;
+            if (this.left > window.innerWidth - this.size) this.left = window.innerWidth - this.size;
+        }
+
+        this.moveLeft = function(){
+            this.left -= this.speed;
+            if (this.left < 0) this.left = 0;
+        }
+
+        this.moveUp = function(){
+            this.top -= this.speed;
+            if (this.top < 0) this.top = 0;
+        }
+
+        this.moveDown = function(){
+            this.top += this.speed;
+            if (this.top > window.innerHeight - this.size) this.top = window.innerHeight - this.size;
+        }
+    }
+
+    var hero = new Hero('deathBullet.png', 20, 30, 100, 20);
+
+    function render(){
+        document.getElementById('game').innerHTML = hero.getHeroElement();
+    }
+
+    window.addEventListener('keydown', function(event) {
+        switch(event.key) {
+            case 'ArrowRight':
+                hero.moveRight();
+                break;
+            case 'ArrowLeft':
+                hero.moveLeft();
+                break;
+            case 'ArrowUp':
+                hero.moveUp();
+                break;
+            case 'ArrowDown':
+                hero.moveDown();
+                break;
+        }
+        render();
+    });
+
+    render();
+</script>
+</body>
+</html>

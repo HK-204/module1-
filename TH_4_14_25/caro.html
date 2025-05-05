@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Caro</title>
+</head>
+<body>
+<script>
+    class Cell {
+        constructor(row, col, size, onClick) {
+            this.row = row;
+            this.col = col;
+            this.value = "";
+            this.element = document.createElement("div");
+
+            Object.assign(this.element.style, {
+                position: "absolute",
+                width: `${size}px`,
+                height: `${size}px`,
+                left: `${col * size}px`,
+                top: `${row * size}px`,
+                border: "1px solid #999",
+                fontSize: "20px",
+                fontWeight: "bold",
+                textAlign: "center",
+                lineHeight: `${size}px`,
+                cursor: "pointer",
+                userSelect: "none",
+            });
+
+            this.element.addEventListener("click", () => onClick(this));
+        }
+
+        setValue(player) {
+            if (this.value === "") {
+                this.value = player;
+                this.element.textContent = player;
+                return true;
+            }
+            return false;
+        }
+    }
+
+    class Board {
+        constructor(rows, cols, cellSize, onClick) {
+            this.rows = rows;
+            this.cols = cols;
+            this.cellSize = cellSize;
+            this.cells = [];
+
+            this.element = document.createElement("div");
+            this.element.style.position = "relative";
+            this.element.style.width = `${cols * cellSize}px`;
+            this.element.style.height = `${rows * cellSize}px`;
+            this.element.style.border = "2px solid black";
+
+            for (let i = 0; i < rows; i++) {
+                this.cells[i] = [];
+                for (let j = 0; j < cols; j++) {
+                    const cell = new Cell(i, j, cellSize, onClick);
+                    this.cells[i][j] = cell;
+                    this.element.appendChild(cell.element);
+                }
+            }
+
+            document.body.appendChild(this.element);
+        }
+
+        getValue(row, col) {
+            if (this.inBounds(row, col)) {
+                return this.cells[row][col].value;
+            }
+            return null;
+        }
+
+        inBounds(row, col) {
+            return row >= 0 && row < this.rows && col >= 0 && col < this.cols;
+        }
+
+        setMessage(msg) {
+            if (!this.message) {
+                this.message = document.createElement("div");
+                this.message.style.marginTop = "10px";
+                this.message.style.fontWeight = "bold";
+                this.message.style.fontSize = "18px";
+                document.body.appendChild(this.message);
+            }
+            this.message.textContent = msg;
+        }
+    }
+
+    class Game {
+        constructor() {
+            this.currentPlayer = "X";
+            this.board = new Board(20, 20, 30, this.handleClick.bind(this));
+            this.gameOver = false;
+        }
+
+        handleClick(cell) {
+            if (this.gameOver) return;
+
+            const placed = cell.setValue(this.currentPlayer);
+            if (!placed) return;
+
+            if (this.checkWin(cell.row, cell.col, this.currentPlayer)) {
+                this.board.setMessage(`${this.currentPlayer} thắng!`);
+                this.gameOver = true;
+            } else {
+                this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
+            }
+        }
+
+        checkWin(row, col, player) {
+            const directions = [
+                { dx: 0, dy: 1 },
+                { dx: 1, dy: 0 },
+                { dx: 1, dy: 1 },
+                { dx: 1, dy: -1 },
+            ];
+
+            for (const { dx, dy } of directions) {
+                let count = 1;
+                count += this.countDirection(row, col, player, dx, dy);
+                count += this.countDirection(row, col, player, -dx, -dy);
+                if (count >= 5) return true;
+            }
+
+            return false;
+        }
+
+        countDirection(row, col, player, dx, dy) {
+            let count = 0;
+            let r = row + dx;
+            let c = col + dy;
+
+            while (this.board.inBounds(r, c) && this.board.getValue(r, c) === player) {
+                count++;
+                r += dx;
+                c += dy;
+            }
+
+            return count;
+        }
+    }
+
+    new Game();
+</script>
+</body>
+</html>

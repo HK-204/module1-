@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bt</title>
+</head>
+<body>
+    <button onclick="sumBoard()">Tổng bảng</button><br>
+    <button onclick="sumCheoChinh()">Tổng đường chéo chính</button><br>
+    <button onclick="sumCheoPhu()">Tổng đường chéo phụ</button><br>
+    <input type="number" id="col" min="1" max="4"><button onclick="sumCot()">Tổng cột</button><br>
+    <button onclick="soLonNhat()">Số lớn nhất</button><br>
+    <button onclick="sumSoChan()">Tổng số chẵn</button>
+  <script>
+    let board = [
+            [1, 2, 3, 4],
+            [4, 5, 6, 7],
+            [8, 9, 10, 11],
+            [13, 14, 15, 16],
+    ];
+    let n = board.length;
+
+    function sumBoard() {
+        let sum = 0;
+        for (let i = 0; i < board.length; i++) {
+            for (let j = 0; j < board[i].length; j++) {
+                sum += board[i][j];
+            }
+        }
+        alert("Tổng bảng là " + sum);
+    }
+
+    function sumCheoChinh() {
+        let sum = 0;
+        for (let i = 0; i < board.length; i++) {
+            sum += board[i][i];
+        }
+        alert("Tổng đường chéo chính là " + sum);
+    }
+
+    function sumCheoPhu() {
+        let sum = 0;
+        for (let i = 0; i < board.length; i++) {
+            sum += board[i][n - 1 - i];
+        }
+        alert("Tổng đường chéo phụ là " + sum);
+    }
+
+    function sumCot() {
+        let sum = 0;
+        let col = +document.getElementById("col").value;
+        for (let i = 0; i < board.length; i++) {
+            sum += board[i][col];
+        }
+        alert("Tổng của cột " + col + " là " + sum);
+    }
+
+    function soLonNhat(){
+        let max = null;
+        for (let i = 0; i < board.length; i++) {
+            for (let j = 0; j < board[i].length; j++) {
+                if (board[i][j] > max) {
+                    max = board[i][j];
+                }
+            }
+        }
+        alert("Số lớn nhất là " + max);
+    }
+
+    function sumSoChan(){
+        let soChan = 0;
+        for (let i = 0; i < board.length; i++) {
+            for (let j = 0; j < board[i].length; j++) {
+                if (board[i][j] % 2 == 0) {
+                    soChan++;
+                }
+            }
+        }
+        alert("Có tổng " + soChan + " số chẵn");
+    }
+  </script>
+</body>
+</html>

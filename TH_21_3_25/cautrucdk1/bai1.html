@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bai 1</title>
+</head>
+<body>
+<input id="a1" type="number" placeholder="Nhập a">
+<input id="b1" type="number" placeholder="Nhập b">
+<button onclick="kiemTraChiaHet()">Kiểm tra</button>
+<p id="kq1"></p>
+
+<script>
+  function kiemTraChiaHet() {
+    var a = +document.getElementById("a1").value;
+    var b = +document.getElementById("b1").value;
+    if (b === 0) {
+      document.getElementById("kq1").innerText = "Không thể chia cho 0";
+    } else if (a % b === 0) {
+      document.getElementById("kq1").innerText = "a chia hết cho b";
+    } else {
+      document.getElementById("kq1").innerText = "a không chia hết cho b";
+    }
+  }
+</script>
+</body>
+</html>

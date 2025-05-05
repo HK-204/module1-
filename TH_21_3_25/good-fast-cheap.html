@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Good - Cheap - Fast</title>
+</head>
+<body>
+<label><input type="checkbox" id="good" onclick="handleClick('good')"> Good</label><br>
+<label><input type="checkbox" id="cheap" onclick="handleClick('cheap')"> Cheap</label><br>
+<label><input type="checkbox" id="fast" onclick="handleClick('fast')"> Fast</label><br>
+
+<script>
+  function handleClick(clicked) {
+    var good = document.getElementById("good");
+    var cheap = document.getElementById("cheap");
+    var fast = document.getElementById("fast");
+
+    var count = 0;
+    if (good.checked) count++;
+    if (cheap.checked) count++;
+    if (fast.checked) count++;
+
+    if (count > 2) {
+      if (clicked === "good") {
+        if (cheap.checked && fast.checked) {
+          cheap.checked = false;
+        }
+      } else if (clicked === "cheap") {
+        if (good.checked && fast.checked) {
+          good.checked = false;
+        }
+      } else if (clicked === "fast") {
+        if (good.checked && cheap.checked) {
+          good.checked = false;
+        }
+      }
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lamp</title>
+</head>
+<body>
+<button onclick="toggleLamp()">công tắc đèn</button>
+<p id="status">bật/tắt 0 lần</p>
+<pre id="output"></pre>
+<script>
+    class electricLamp {
+        constructor() {
+            this.status = false;
+        }
+
+        turnOn() {
+            this.status = true;
+            document.getElementById('output').innerText = "bật đèn";
+        }
+
+        turnOff() {
+            this.status = false;
+            document.getElementById('output').innerText = "tắt đèn";
+        }
+    }
+
+    class SwitchButton {
+        constructor() {
+            this.status = false;
+            this.lamp = null;
+        }
+
+        connectToLamp(electLamp) {
+            this.lamp = electLamp;
+        }
+
+        switchOn() {
+            if (this.lamp){
+                this.status = true;
+                this.lamp.turnOn();
+            }
+        }
+
+        switchOff() {
+            if (this.lamp){
+                this.status = false;
+                this.lamp.turnOff();
+            }
+        }
+    }
+
+    let lamp = new electricLamp();
+    let switchButton = new SwitchButton();
+
+    switchButton.connectToLamp(lamp);
+
+    let count = 0;
+    function toggleLamp() {
+        count++;
+        document.getElementById("status").innerText = "bật/tắt " + count + " lần";
+
+        if (count <= 10) {
+            if (switchButton.status) {
+                switchButton.switchOff();
+            } else {
+                switchButton.switchOn();
+            }
+        } else {
+            document.getElementById("status").innerText = "hết điện";
+        }
+    }
+</script>
+</body>
+</html>

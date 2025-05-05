@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rectangle</title>
+</head>
+<body>
+<canvas id="myCanvas" width="800" height="600" style="border:1px solid black;"></canvas>
+<script>
+  class Rectangle {
+    constructor(x, y, width, height) {
+      this.x = x;
+      this.y = y;
+      this.width = width;
+      this.height = height;
+
+      this.canvas = document.getElementById("myCanvas");
+      this.ctx = this.canvas.getContext("2d");
+    }
+
+    getPerimeter() {
+      return (this.width + this.height) * 2;
+    }
+
+    getArea() {
+      return this.width * this.height;
+    }
+
+    drawCircle() {
+      this.ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+  }
+
+  let rectangle = new Rectangle(0, 0, 100, 50, "myCanvas");
+  rectangle.drawCircle();
+  let perimeter = rectangle.getPerimeter();
+  let area = rectangle.getArea();
+  document.write("<br>" + "perimeter: " + perimeter + "<br>" + " area: " + area);
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Managerment</title>
+</head>
+<body>
+
+<h2>Add New Product</h2>
+<div>
+    <input type="text" id="productInput" placeholder="New Product">
+    <button onclick="addProduct()">Add</button>
+</div>
+
+<h2>Display All Products</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th colspan="3">Product Name</th>
+    </tr>
+    </thead>
+    <tbody id="productTableBody"></tbody>
+</table>
+
+<script>
+    let products = [];
+
+    function renderProducts() {
+        let tbody = document.getElementById("productTableBody");
+        tbody.innerHTML = "";
+
+        for (let i = 0; i < products.length; i++) {
+            tbody.innerHTML +=
+                "<tr>" +
+                "<td>" + products[i] + "</td>" +
+                "<td><button onclick='editProduct(" + i + ")'>Edit</button></td>" +
+                "<td><button onclick='deleteProduct(" + i + ")'>Delete</button></td>" +
+                "</tr>";
+        }
+    }
+
+    function addProduct() {
+        let input = document.getElementById("productInput");
+        let productName = input.value.trim();
+
+        if (productName === "") {
+            alert("Please enter a product name.");
+            return;
+        }
+
+        products.push(productName);
+        input.value = "";
+        renderProducts();
+    }
+
+    function editProduct(index) {
+        let newName = prompt("Edit Product Name:", products[index]);
+        if (newName !== null && newName.trim() !== "") {
+            products[index] = newName.trim();
+            renderProducts();
+        }
+    }
+
+    function deleteProduct(index) {
+        products.splice(index, 1);
+        renderProducts();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>
+  Nhập feet: <input type="number" id="inputFeet">
+  <button onclick="convertFootToMeter()">Chuyển sang mét</button>
+</p>
+<p id="resultMeter"></p>
+
+<p>
+  Nhập meters: <input type="number" id="inputMeter">
+  <button onclick="convertMeterToFoot()">Chuyển sang feet</button>
+</p>
+<p id="resultFoot"></p>
+
+<script>
+  function footToMeter(foot) {
+    return 0.305 * foot;
+  }
+
+  function meterToFoot(meter) {
+    return 3.279 * meter;
+  }
+
+  function convertFootToMeter() {
+    let foot = parseFloat(document.getElementById("inputFeet").value);
+    let meter = footToMeter(foot);
+    document.getElementById("resultMeter").innerText = foot + " feet = " + meter.toFixed(3) + " meters";
+  }
+
+  function convertMeterToFoot() {
+    let meter = parseFloat(document.getElementById("inputMeter").value);
+    let foot = meterToFoot(meter);
+    document.getElementById("resultFoot").innerText = meter + " meters = " + foot.toFixed(3) + " feet";
+  }
+</script>
+
+</body>
+</html>

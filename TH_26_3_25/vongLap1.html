@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- Bài 1 -->
+<button onclick="bai1()">Bài 1: Đếm từ 1 đến 100</button>
+<p id="bai1-output"></p>
+
+<!-- Bài 2 -->
+<label>Nhập nhiệt độ: <input type="number" id="temperature"></label>
+<button onclick="bai2()">Kiểm tra nhiệt độ</button>
+<p id="bai2-output"></p>
+
+<!-- Bài 3-7 xuất ra text -->
+<button onclick="bai3()">Bài 3: 20 số Fibonacci đầu</button>
+<p id="bai3-output"></p>
+
+<button onclick="bai4()">Bài 4: Số Fibonacci đầu tiên chia hết cho 5</button>
+<p id="bai4-output"></p>
+
+<button onclick="bai5()">Bài 5: Tổng 20 số Fibonacci đầu</button>
+<p id="bai5-output"></p>
+
+<button onclick="bai6()">Bài 6: Tổng 30 số chia hết cho 7</button>
+<p id="bai6-output"></p>
+
+<button onclick="bai7()">Bài 7: FizzBuzz</button>
+<p id="bai7-output"></p>
+
+<!-- Bài 8 -->
+<button onclick="bai8()">Bài 8: Game đoán số</button>
+<p id="bai8-output"></p>
+<input id="bai8-min" placeholder="Min" type="number">
+<input id="bai8-max" placeholder="Max" type="number">
+<input id="bai8-guess" placeholder="Đoán số" type="number">
+<button onclick="bai8Doan()">Đoán</button>
+
+<script>
+    function bai1() {
+        let text = "";
+        for (let i = 1; i <= 100; i++) {
+            text += i + " ";
+            if (i === 99) {
+                text += "\nĐã hoàn thành!";
+            }
+        }
+        document.getElementById("bai1-output").innerText = text;
+    }
+
+    function bai2() {
+        let temp = Number(document.getElementById("temperature").value);
+        let msg = "";
+        if (temp > 100) {
+            msg = "Nhiệt độ cao quá, hãy giảm nhiệt độ.";
+        } else if (temp < 20) {
+            msg = "Nhiệt độ thấp quá, hãy tăng nhiệt độ.";
+        } else {
+            msg = "Nhiệt độ ổn định.";
+        }
+        document.getElementById("bai2-output").innerText = msg;
+    }
+
+    function bai3() {
+        let fib = [0, 1];
+        while (fib.length < 20) {
+            fib.push(fib[fib.length - 1] + fib[fib.length - 2]);
+        }
+        document.getElementById("bai3-output").innerText = fib.join(", ");
+    }
+
+    function bai4() {
+        let a = 0, b = 1;
+        while (true) {
+            let next = a + b;
+            if (next % 5 === 0) {
+                document.getElementById("bai4-output").innerText = next;
+                break;
+            }
+            a = b;
+            b = next;
+        }
+    }
+
+    function bai5() {
+        let fib = [0, 1];
+        while (fib.length < 20) {
+            fib.push(fib[fib.length - 1] + fib[fib.length - 2]);
+        }
+        let sum = fib.reduce((a, b) => a + b, 0);
+        document.getElementById("bai5-output").innerText = sum;
+    }
+
+    function bai6() {
+        let sum = 0, count = 0, i = 0;
+        while (count < 30) {
+            if (i % 7 === 0) {
+                sum += i;
+                count++;
+            }
+            i++;
+        }
+        document.getElementById("bai6-output").innerText = sum;
+    }
+
+    function bai7() {
+        let text = "";
+        for (let i = 1; i <= 100; i++) {
+            if (i % 15 === 0) {
+                text += "FizzBuzz ";
+            } else if (i % 3 === 0) {
+                text += "Fizz ";
+            } else if (i % 5 === 0) {
+                text += "Buzz ";
+            } else {
+                text += i + " ";
+            }
+        }
+        document.getElementById("bai7-output").innerText = text;
+    }
+
+    let bai8SoNgauNhien = null;
+    let bai8Lan = 0;
+    function bai8() {
+        const min = parseInt(document.getElementById("bai8-min").value);
+        const max = parseInt(document.getElementById("bai8-max").value);
+        bai8SoNgauNhien = Math.floor(Math.random() * (max - min + 1)) + min;
+        bai8Lan = 0;
+        document.getElementById("bai8-output").innerText = `Đã tạo số ngẫu nhiên trong khoảng ${min} đến ${max}. Hãy đoán!`;
+    }
+
+    function bai8Doan() {
+        if (bai8SoNgauNhien === null) return;
+        const doan = parseInt(document.getElementById("bai8-guess").value);
+        bai8Lan++;
+        if (doan === bai8SoNgauNhien) {
+            document.getElementById("bai8-output").innerText = `Chúc mừng! Bạn đã đoán đúng trong ${bai8Lan} lần.`;
+            bai8SoNgauNhien = null;
+        } else if (bai8Lan >= 3) {
+            document.getElementById("bai8-output").innerText = `Bạn đã hết lượt! Số đúng là ${bai8SoNgauNhien}.`;
+            bai8SoNgauNhien = null;
+        } else if (doan < bai8SoNgauNhien) {
+            document.getElementById("bai8-output").innerText = "Số bạn đoán nhỏ hơn. Hãy thử lại!";
+        } else {
+            document.getElementById("bai8-output").innerText = "Số bạn đoán lớn hơn. Hãy thử lại!";
+        }
+    }
+</script>
+</body>
+</html>

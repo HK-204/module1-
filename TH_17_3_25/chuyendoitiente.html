@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>chuyen doi tien te</title>
+</head>
+<body>
+
+<h2>Chuyển đổi tiền tệ</h2>
+
+<table border="1" cellpadding="5">
+  <tr>
+    <th>Amount</th>
+    <th>From Currency</th>
+    <th>To Currency</th>
+  </tr>
+  <tr>
+    <td><input type="number" id="amount" placeholder="Nhập số tiền"></td>
+    <td>
+      <select id="fromCurrency">
+        <option value="USD">USD</option>
+        <option value="VND">VND</option>
+      </select>
+    </td>
+    <td>
+      <select id="toCurrency">
+        <option value="USD">USD</option>
+        <option value="VND">VND</option>
+      </select>
+    </td>
+  </tr>
+</table>
+
+<br>
+<button onclick="convert()">Chuyển đổi</button>
+
+<script>
+  function convert() {
+    const amount = +document.getElementById("amount").value;
+    const from = document.getElementById("fromCurrency").value;
+    const to = document.getElementById("toCurrency").value;
+
+    let rate = 1;
+
+    if (from === "USD" && to === "VND") {
+      rate = 25000;
+    } else if (from === "VND" && to === "USD") {
+      rate = 1 / 25000;
+    }
+
+    const result = amount * rate;
+    var text = "";
+    if (to === "VND") {
+      text = result + "VND";
+      document.write(text);
+    }
+
+    if (to === "USD") {
+      text = result + "USD";
+      document.write(text);
+    }
+  }
+</script>
+
+</body>
+</html>

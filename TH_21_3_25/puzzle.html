@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini Puzzle Game</title>
+</head>
+<body>
+<p>mục tiêu: 1 2 3 4</p>
+<table border="1" cellpadding="20">
+  <tr>
+    <td id="cell1" onclick="change1()">0</td>
+    <td id="cell2" onclick="change2()">0</td>
+  </tr>
+  <tr>
+    <td id="cell3" onclick="change3()">0</td>
+    <td id="cell4" onclick="change4()">0</td>
+  </tr>
+</table>
+
+<p id="result"></p>
+
+<script>
+  var cell1Value = 0;
+  var cell2Value = 0;
+  var cell3Value = 0;
+  var cell4Value = 0;
+
+  function change1() {
+    cell1Value = cell1Value + 1;
+    if (cell1Value > 4) {
+      cell1Value = 1;
+    }
+    document.getElementById("cell1").innerText = cell1Value;
+    checkWin();
+  }
+
+  function change2() {
+    cell2Value = cell2Value + 1;
+    if (cell2Value > 4) {
+      cell2Value = 1;
+    }
+    document.getElementById("cell2").innerText = cell2Value;
+    checkWin();
+  }
+
+  function change3() {
+    cell3Value = cell3Value + 1;
+    if (cell3Value > 4) {
+      cell3Value = 1;
+    }
+    document.getElementById("cell3").innerText = cell3Value;
+    checkWin();
+  }
+
+  function change4() {
+    cell4Value = cell4Value + 1;
+    if (cell4Value > 4) {
+      cell4Value = 1;
+    }
+    document.getElementById("cell4").innerText = cell4Value;
+    checkWin();
+  }
+
+  function checkWin() {
+    if (
+            cell1Value === 1 &&
+            cell2Value === 2 &&
+            cell3Value === 3 &&
+            cell4Value === 4
+    ) {
+      document.getElementById("result").innerText = "🎉 Chúc mừng! Bạn đã hoàn thành bức tranh!";
+    } else {
+      document.getElementById("result").innerText = "";
+    }
+  }
+</script>
+
+</body>
+</html>

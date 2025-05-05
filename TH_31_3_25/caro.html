@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Cờ Caro</title>
+</head>
+<body>
+<h1>Trò Chơi Cờ Caro</h1>
+
+<pre id="board" style="font-size: 20px;"></pre>
+
+<div>
+    <label for="row">Hàng (0-2):</label>
+    <input type="number" id="row" min="0" max="2">
+    <label for="col">Cột (0-2):</label>
+    <input type="number" id="col" min="0" max="2">
+    <button onclick="handleMove()">Chơi</button>
+</div>
+
+<script>
+    let board = [
+        ['.', '.', '.'],
+        ['.', '.', '.'],
+        ['.', '.', '.']
+    ];
+
+    let currentPlayer = 'X';
+    let gameOver = false;
+
+    function printBoard() {
+        let boardDisplay = '';
+        for (let row = 0; row < 3; row++) {
+            boardDisplay += board[row].join(' ') + '\n';
+        }
+        document.getElementById('board').textContent = boardDisplay;
+    }
+
+    function checkWin() {
+        for (let row = 0; row < 3; row++) {
+            if (board[row][0] === currentPlayer && board[row][1] === currentPlayer && board[row][2] === currentPlayer) {
+                return true;
+            }
+        }
+
+        for (let col = 0; col < 3; col++) {
+            if (board[0][col] === currentPlayer && board[1][col] === currentPlayer && board[2][col] === currentPlayer) {
+                return true;
+            }
+        }
+
+        if (board[0][0] === currentPlayer && board[1][1] === currentPlayer && board[2][2] === currentPlayer) {
+            return true;
+        }
+
+        if (board[0][2] === currentPlayer && board[1][1] === currentPlayer && board[2][0] === currentPlayer) {
+            return true;
+        }
+
+        return false;
+    }
+
+    function playGame(row, col) {
+        if (gameOver) {
+            alert("Trò chơi đã kết thúc. Làm mới trang để chơi lại.");
+            return;
+        }
+
+        if (board[row][col] !== '.') {
+            alert("Ô này đã được chọn, vui lòng chọn ô khác.");
+            return;
+        }
+
+        board[row][col] = currentPlayer;
+        printBoard();
+
+        if (checkWin()) {
+            alert(`Người chơi ${currentPlayer} chiến thắng!`);
+            gameOver = true;
+            return;
+        }
+
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    }
+
+    function handleMove() {
+        let row = parseInt(document.getElementById("row").value);
+        let col = parseInt(document.getElementById("col").value);
+
+        if (isNaN(row) || isNaN(col) || row < 0 || row > 2 || col < 0 || col > 2) {
+            alert("Vị trí không hợp lệ, vui lòng nhập lại.");
+            return;
+        }
+
+        playGame(row, col);
+
+        if (!gameOver) {
+            document.getElementById("row").value = "";
+            document.getElementById("col").value = "";
+        }
+    }
+
+    printBoard();
+</script>
+</body>
+</html>

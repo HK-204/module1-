@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>quiz mini</title>
+</head>
+<body>
+<h2>Quiz mini</h2>
+<p id="question">Câu hỏi</p>
+
+<button onclick="checkAnswer(1)" id="ans1" style="width: 200px">Đáp án 1</button><br><br>
+<button onclick="checkAnswer(2)" id="ans2" style="width: 200px">Đáp án 2</button><br><br>
+<button onclick="checkAnswer(3)" id="ans3" style="width: 200px">Đáp án 3</button><br><br>
+<button onclick="checkAnswer(4)" id="ans4" style="width: 200px">Đáp án 4</button><br><br>
+
+<button onclick="nextQuestion()" id="next" disabled>Câu tiếp</button>
+<p id="result"></p>
+
+<script>
+  let questions = [
+          "Thẻ nào được dùng để tạo liên kết trong HTML?",
+          "Thuộc tính nào của thẻ img dùng để chỉ đường dẫn đến hình ảnh?",
+          "Câu lệnh nào dùng để hiển thị hộp thoại thông báo (popup)?"
+          ];
+
+  let options =[
+          ["div","a","p","link"],
+          ["href","src","alt","link"],
+          ["prompt()","alert()","console.log()","confirm()"]
+          ];
+
+  let currentQuestion = 0;
+  let correctAnswers = [2, 2, 2];
+  let score = 0;
+  function renderQuestion() {
+    document.getElementById("result").innerText = "";
+    document.getElementById("next").disabled = true;
+
+    let textQuestion = questions[currentQuestion];
+    let textAnswer = options[currentQuestion];
+
+    document.getElementById("question").innerHTML = textQuestion;
+    document.getElementById("ans1").innerHTML = textAnswer[0];
+    document.getElementById("ans2").innerHTML = textAnswer[1];
+    document.getElementById("ans3").innerHTML = textAnswer[2];
+    document.getElementById("ans4").innerHTML = textAnswer[3];
+
+    resetButtonColor(true);
+  }
+
+  function nextQuestion() {
+    currentQuestion += 1;
+    if (currentQuestion < questions.length) {
+      renderQuestion();
+    } else {
+      showFinalResults();
+    }
+  }
+
+  function resetButtonColor(enable) {
+    for (let i = 0; i < 4; i++) {
+      let btn = document.getElementById("ans" + (i + 1));
+      btn.style.backgroundColor = "";
+      btn.disabled = !enable;
+    }
+  }
+
+  function checkAnswer(index) {
+    let correct = correctAnswers[currentQuestion];
+    let btn = document.getElementById("ans" + index);
+
+    if (index === correct) {
+      btn.style.backgroundColor = "lightgreen";
+      document.getElementById("result").innerText = "Chính xác";
+      score++;
+    } else {
+      btn.style.backgroundColor = "red";
+      document.getElementById("result").innerText = "Sai rồi";
+    }
+
+    document.getElementById("next").disabled = false;
+  }
+
+  function showFinalResults() {
+    document.getElementById("question").innerText = "Bạn đã hoàn thành bài Quiz";
+    document.getElementById("result").innerText = "Kết quả: " + score + "/" + questions.length + " câu";
+
+    for (let i = 1; i <= 4; i++){
+      document.getElementById("ans" + i).style.display = "none";
+    }
+    document.getElementById("next").style.display = "none";
+  }
+
+  renderQuestion();
+</script>
+</body>
+</html>

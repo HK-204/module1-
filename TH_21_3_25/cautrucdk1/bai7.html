@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bai 7</title>
+</head>
+<body>
+<input id="soPhut" type="number" placeholder="Số phút gọi">
+<button onclick="tinhCuoc()">Tính cước</button>
+<p id="kq7"></p>
+
+<script>
+  function tinhCuoc() {
+    var phut = +document.getElementById("soPhut").value;
+    var cuoc = 0;
+    if (phut <= 50) {
+      cuoc = phut * 600;
+    } else if (phut <= 200) {
+      cuoc = 50 * 600 + (phut - 50) * 400;
+    } else {
+      cuoc = 50 * 600 + 150 * 400 + (phut - 200) * 200;
+    }
+    document.getElementById("kq7").innerText = "Cước phải trả: " + cuoc + " VND";
+  }
+</script>
+</body>
+</html>

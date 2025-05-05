@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="number">
+<button onclick="addToArray()">Add</button>
+<button onclick="check()">Check</button>
+
+<pre id="result">result</pre>
+<script>
+  let arr = [];
+
+  function addToArray() {
+    let number = +document.getElementById("number").value;
+
+    if (isNaN(number)) {
+      alert("Please enter a number");
+      return;
+    }
+    arr.push(number);
+    document.getElementById("number").value = "";
+  }
+
+  function check() {
+    if (arr.length === 0) {
+      document.getElementById("result").innerText = "Please add a number first";
+    } else {
+      let min = arr[0];
+      for (let i = 0; i < arr.length; i++) {
+        if (min > arr[i]) min = arr[i];
+      }
+      document.getElementById("result").innerText = min;
+    }
+  }
+</script>
+</body>
+</html>

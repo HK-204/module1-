@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Pin: <span id="nokiaBattery">100</span></p>
+<button onclick="nokia.turnOn(); updateDisplay()">Bật</button>
+<button onclick="nokia.turnOff(); updateDisplay()">Tắt</button>
+<button onclick="nokia.charge(); updateDisplay()">Sạc pin</button>
+<br><br>
+<textarea id="nokiaMessage" placeholder="Nokia soạn tin nhắn..."></textarea><br>
+<button onclick="sendMessage()">Gửi tin nhắn cho iPhone</button>
+<button onclick="viewNokiaSent()">Xem tin đã gửi</button>
+<p id="nokiaSentResult"></p>
+
+<hr>
+
+<h2>Điện thoại iPhone</h2>
+<p>Pin: <span id="iphoneBattery">100</span></p>
+<button onclick="iphone.turnOn(); updateDisplay()">Bật</button>
+<button onclick="iphone.turnOff(); updateDisplay()">Tắt</button>
+<button onclick="iphone.charge(); updateDisplay()">Sạc pin</button>
+<br><br>
+<button onclick="viewIphoneInbox()">Xem hộp thư đến</button>
+<p id="iphoneInboxResult"></p>
+
+<script>
+    class Mobile {
+        constructor(name) {
+            this.name = name;
+            this.battery = 100;
+            this.isOn = false;
+            this.draft = "";
+            this.inbox = [];
+            this.sentMessages = [];
+        }
+
+        turnOn() {
+            this.isOn = true;
+        }
+
+        turnOff() {
+            this.isOn = false;
+        }
+
+        charge() {
+            this.battery = 100;
+        }
+
+        writeMessage(content) {
+            if (this.canUse()) {
+                this.draft = content;
+                this.consumeBattery();
+            }
+        }
+
+        sendMessage(receiver) {
+            if (this.canUse() && this.draft !== "") {
+                receiver.receiveMessage(this.draft);
+                this.sentMessages.push(this.draft);
+                this.draft = "";
+                this.consumeBattery();
+            }
+        }
+
+        receiveMessage(msg) {
+            if (this.canUse()) {
+                this.inbox.push(msg);
+                this.consumeBattery();
+            }
+        }
+
+        viewInbox() {
+            if (this.canUse()) {
+                this.consumeBattery();
+                return this.inbox;
+            }
+            return [];
+        }
+
+        viewSentMessages() {
+            if (this.canUse()) {
+                this.consumeBattery();
+                return this.sentMessages;
+            }
+            return [];
+        }
+
+        consumeBattery() {
+            this.battery = Math.max(0, this.battery - 1);
+        }
+
+        canUse() {
+            return this.isOn && this.battery > 0;
+        }
+    }
+
+    const nokia = new Mobile("Nokia");
+    const iphone = new Mobile("iPhone");
+
+    nokia.turnOn();
+    iphone.turnOn();
+
+    function sendMessage() {
+        const message = document.getElementById("nokiaMessage").value.trim();
+        if (message === "") {
+            alert("Vui lòng nhập nội dung tin nhắn.");
+            return;
+        }
+
+        nokia.writeMessage(message);
+        nokia.sendMessage(iphone);
+        document.getElementById("nokiaMessage").value = "";
+        alert("Nokia đã gửi tin nhắn!");
+        updateDisplay();
+    }
+
+    function viewIphoneInbox() {
+        const messages = iphone.viewInbox();
+        if (messages.length === 0) {
+            document.getElementById("iphoneInboxResult").innerText = "Hộp thư đến trống.";
+        } else {
+            document.getElementById("iphoneInboxResult").innerText = "Hộp thư đến:\n" + messages.join("\n");
+        }
+        updateDisplay();
+    }
+
+    function viewNokiaSent() {
+        const messages = nokia.viewSentMessages();
+        if (messages.length === 0) {
+            document.getElementById("nokiaSentResult").innerText = "Chưa có tin nhắn đã gửi.";
+        } else {
+            document.getElementById("nokiaSentResult").innerText = "Tin đã gửi:\n" + messages.join("\n");
+        }
+        updateDisplay();
+    }
+
+    function updateDisplay() {
+        document.getElementById("nokiaBattery").innerText = nokia.battery;
+        document.getElementById("iphoneBattery").innerText = iphone.battery;
+    }
+</script>
+</body>
+</html>

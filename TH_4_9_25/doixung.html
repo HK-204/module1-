@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Nhập chuỗi: <input type="text" id="inputString"></p>
+<button onclick="checkPalindrome()">Kiểm tra</button>
+<p id="result"></p>
+
+<script>
+  function isPalindrome(s) {
+    if (s.length <= 1) {
+      return true;
+    }
+
+    if (s[0] !== s[s.length - 1]) {
+      return false;
+    }
+
+    return isPalindrome(s.slice(1, s.length - 1));
+  }
+
+  function checkPalindrome() {
+    let input = document.getElementById("inputString").value.trim().toLowerCase();
+    if (input === "") {
+      document.getElementById("result").innerText = "Vui lòng nhập một chuỗi.";
+      return;
+    }
+
+    let result = isPalindrome(input);
+    if (result) {
+      document.getElementById("result").innerText = `"${input}" là chuỗi đối xứng.`;
+    } else {
+      document.getElementById("result").innerText = `"${input}" không phải là chuỗi đối xứng.`;
+    }
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="carogame"></div>
+
+<script>
+    let b = document.getElementById("carogame");
+
+    let board = [];
+    for (let i = 0; i < 5; i++) {
+        board[i] = [0, 0, 0, 0, 0];
+    }
+
+    renderBoard();
+
+    function renderBoard() {
+        let data = "<table border='1' cellspacing='0' cellpadding='10'>";
+        for (let i = 0; i < 5; i++) {
+            data += "<tr>";
+            for (let j = 0; j < 5; j++) {
+                data += `<td align='center'>${board[i][j]}</td>`;
+            }
+            data += "</tr>";
+        }
+        data += "</table><br/><input type='button' value='Change Value' onclick='changeValue()'>";
+        b.innerHTML = data;
+    }
+
+    function changeValue() {
+        let positionX = parseInt(prompt("X (0-4): "));
+        let positionY = parseInt(prompt("Y (0-4): "));
+        if (isNaN(positionX) || isNaN(positionY) || positionX < 0 || positionX > 4 || positionY < 0 || positionY > 4) {
+            alert("Invalid input. Please enter numbers from 0 to 4.");
+            return;
+        }
+        board[positionX][positionY] = "x";
+        renderBoard();
+    }
+</script>
+
+</body>
+</html>

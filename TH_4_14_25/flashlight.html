@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flashlight</title>
+</head>
+<body>
+<button onclick="toggleLamp()">công tắc</button>
+
+<p id="battery-energy"></p>
+<pre id="output"></pre>
+<script>
+  class Battery {
+    constructor() {
+      this.energy = 0;
+    }
+
+    setEnergy (energy) {
+      this.energy = energy;
+    }
+
+    getEnergy () {
+      return this.energy;
+    }
+
+    decreaseEnergy () {
+      if (this.energy > 0) {
+        this.energy--;
+      }
+    }
+  }
+
+  class Flashlight {
+    constructor() {
+      this.status = false;
+      this.battery = null;
+    }
+
+    setBattery (battery) {
+      this.battery = battery;
+    }
+
+    getBatteryInfo () {
+      return this.battery.getEnergy();
+    }
+
+    light() {
+      if (this.status && this.battery && this.battery.getEnergy() > 0) {
+        document.getElementById("output").innerText = "đèn đang sáng";
+        this.battery.decreaseEnergy();
+      } else {
+        document.getElementById("output").innerText = "hết pin";
+        this.status = false;
+      }
+    }
+
+    turnOn() {
+      this.status = true;
+      this.light();
+    }
+
+    turnOff() {
+      this.status = false;
+      document.getElementById("output").innerText = "đèn đang tắt";
+    }
+  }
+
+  let battery = new Battery();
+  battery.setEnergy(10);
+
+  let flashlight = new Flashlight();
+  flashlight.setBattery(battery);
+
+  function toggleLamp() {
+    if (flashlight.status) {
+      flashlight.turnOff();
+    } else {
+      flashlight.turnOn();
+    }
+
+    document.getElementById("battery-energy").innerText = "Năng lượng còn " + flashlight.getBatteryInfo();
+  }
+</script>
+</body>
+</html>

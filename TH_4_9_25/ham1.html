@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+  <h2>Bài 1: Hiển thị hộp thoại "Xin chào"</h2>
+  <button onclick="alertMessage()">Hiển thị lời chào</button>
+</section>
+
+<section>
+  <h2>Bài 2: Tăng giá trị đối số lên 1</h2>
+  <p>Nhập số: <input type="number" id="inputNumber2">
+    <button onclick="increaseNumber()">Tăng lên 1</button></p>
+  <p id="result2"></p>
+</section>
+
+<section>
+  <h2>Bài 3: So sánh và trả về kết quả</h2>
+  <p>Nhập số thứ nhất: <input type="number" id="num1"></p>
+  <p>Nhập số thứ hai: <input type="number" id="num2"></p>
+  <button onclick="compareAndSum()">Thực hiện</button>
+  <p id="result3"></p>
+</section>
+
+<section>
+  <h2>Bài 4: Hiển thị giá trị biến trước và sau khi gọi hàm</h2>
+  <button onclick="showAddNumbers()">Chạy hàm addNumbers</button>
+  <p id="result4"></p>
+</section>
+
+<section>
+  <h2>Bài 5: Tìm chòm sao từ tên ngôi sao</h2>
+  <button onclick="findConstellation()">Tìm chòm sao</button>
+  <p id="result5"></p>
+</section>
+
+<script>
+  function alertMessage() {
+    alert("Xin chào");
+  }
+
+  function increase(num) {
+    return num + 1;
+  }
+
+  function increaseNumber() {
+    let number = parseFloat(document.getElementById("inputNumber2").value);
+    let result = increase(number);
+    document.getElementById("result2").innerText = "Kết quả: " + result;
+  }
+
+  function compareValues(a, b) {
+    if (a > b) {
+      alert("Tham số thứ nhất lớn hơn tham số thứ hai.");
+    } else {
+      return a + b;
+    }
+  }
+
+  function compareAndSum() {
+    let a = parseFloat(document.getElementById("num1").value);
+    let b = parseFloat(document.getElementById("num2").value);
+    let result = compareValues(a, b);
+    if (result !== undefined) {
+      document.getElementById("result3").innerText = "Tổng: " + result;
+    } else {
+      document.getElementById("result3").innerText = "";
+    }
+  }
+
+  function addNumbers() {
+    let firstNum = 4;
+    let secondNum = 8;
+    let result = firstNum + secondNum;
+    return result;
+  }
+
+  function showAddNumbers() {
+    let result = 0;
+    alert("Giá trị result trước khi gọi hàm: " + result);
+    result = addNumbers();
+    alert("Giá trị result sau khi gọi hàm: " + result);
+    document.getElementById("result4").innerText = "Kết quả cuối cùng: " + result;
+  }
+
+  let stars = ["Polaris", "Aldebaran", "Deneb", "Vega", "Altair", "Dubhe", "Regulus"];
+  let constellations = ["Ursa Minor", "Taurus", "Cygnus", "Lyra", "Aquila", "Ursa Major", "Leo"];
+
+  function findConstellation() {
+    let input = prompt("Nhập tên ngôi sao:");
+    let index = stars.indexOf(input);
+    if (index !== -1) {
+      document.getElementById("result5").innerText = "Ngôi sao " + input + " thuộc chòm sao " + constellations[index] + ".";
+    } else {
+      document.getElementById("result5").innerText = "Không tìm thấy ngôi sao '" + input + "'.";
+    }
+  }
+</script>
+
+</body>
+</html>

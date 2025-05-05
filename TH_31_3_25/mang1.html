@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- Bài 1 -->
+<section>
+    <h3>Bài 1: Đếm số lớn hơn hoặc bằng 10</h3>
+    <button onclick="bai1()">Chạy</button>
+    <div class="output" id="output1"></div>
+</section>
+
+<!-- Bài 2 -->
+<section>
+    <h3>Bài 2: Tìm số lớn nhất và vị trí</h3>
+    <button onclick="bai2()">Chạy</button>
+    <div class="output" id="output2"></div>
+</section>
+
+<!-- Bài 3 -->
+<section>
+    <h3>Bài 3: Tìm giá trị lớn nhất và trung bình</h3>
+    <button onclick="bai3()">Chạy</button>
+    <div class="output" id="output3"></div>
+</section>
+
+<!-- Bài 4 -->
+<section>
+    <h3>Bài 4: Đảo ngược mảng</h3>
+    <button onclick="bai4()">Chạy</button>
+    <div class="output" id="output4"></div>
+</section>
+
+<!-- Bài 5 -->
+<section>
+    <h3>Bài 5: Đếm số âm trong chuỗi</h3>
+    <input type="text" id="input5" value="-3 5 -2 4 0 -1">
+    <button onclick="bai5()">Chạy</button>
+    <div class="output" id="output5"></div>
+</section>
+
+<!-- Bài 6 -->
+<section>
+    <h3>Bài 6: Kiểm tra xem V có trong mảng</h3>
+    <input type="number" id="input6" placeholder="Nhập số V">
+    <button onclick="bai6()">Chạy</button>
+    <div class="output" id="output6"></div>
+</section>
+
+<!-- Bài 7 -->
+<section>
+    <h3>Bài 7: Xoá phần tử V khỏi mảng nếu có</h3>
+    <input type="number" id="input7" placeholder="Nhập số V">
+    <button onclick="bai7()">Chạy</button>
+    <div class="output" id="output7"></div>
+</section>
+
+<!-- Bài 8 -->
+<section>
+    <h3>Bài 8: Sắp xếp mảng giảm dần</h3>
+    <button onclick="bai8()">Chạy</button>
+    <div class="output" id="output8"></div>
+</section>
+
+<!-- Bài 9 -->
+<section>
+    <h3>Bài 9: Nối hai mảng thành một</h3>
+    <button onclick="bai9()">Chạy</button>
+    <div class="output" id="output9"></div>
+</section>
+
+<script>
+    var mangCoSan = [3, 12, 5, 10, 7, 19, 8, 20, 2, 15];
+
+    function bai1() {
+        var dem = 0;
+        for (var i = 0; i < mangCoSan.length; i++) {
+            if (mangCoSan[i] >= 10) {
+                dem++;
+            }
+        }
+        document.getElementById("output1").textContent = "Có " + dem + " số lớn hơn hoặc bằng 10.";
+    }
+
+    function bai2() {
+        var max = mangCoSan[0];
+        var viTri = 0;
+        for (var i = 1; i < mangCoSan.length; i++) {
+            if (mangCoSan[i] > max) {
+                max = mangCoSan[i];
+                viTri = i;
+            }
+        }
+        document.getElementById("output2").textContent = "Số lớn nhất là " + max + " tại vị trí " + viTri + ".";
+    }
+
+    function bai3() {
+        var tong = 0;
+        var max = mangCoSan[0];
+        for (var i = 0; i < mangCoSan.length; i++) {
+            tong += mangCoSan[i];
+            if (mangCoSan[i] > max) {
+                max = mangCoSan[i];
+            }
+        }
+        var trungBinh = tong / mangCoSan.length;
+        document.getElementById("output3").textContent = "Giá trị lớn nhất: " + max + "\nGiá trị trung bình: " + trungBinh;
+    }
+
+    function bai4() {
+        var dao = [];
+        for (var i = mangCoSan.length - 1; i >= 0; i--) {
+            dao.push(mangCoSan[i]);
+        }
+        document.getElementById("output4").textContent = "Mảng đảo ngược: " + dao.join(", ");
+    }
+
+    function bai5() {
+        var chuoi = document.getElementById("input5").value;
+        var mangChuoi = chuoi.split(" ");
+        var demAm = 0;
+        for (var i = 0; i < mangChuoi.length; i++) {
+            var so = parseInt(mangChuoi[i]);
+            if (so < 0) {
+                demAm++;
+            }
+        }
+        document.getElementById("output5").textContent = "Có " + demAm + " số âm trong chuỗi.";
+    }
+
+    function bai6() {
+        var V = parseInt(document.getElementById("input6").value);
+        var timThay = false;
+        for (var i = 0; i < mangCoSan.length; i++) {
+            if (mangCoSan[i] === V) {
+                timThay = true;
+                break;
+            }
+        }
+        var ketQua = timThay ? "V có trong mảng." : "V không có trong mảng.";
+        document.getElementById("output6").textContent = ketQua;
+    }
+
+    function bai7() {
+        var V = parseInt(document.getElementById("input7").value);
+        var arr = mangCoSan.slice();
+        var index = -1;
+
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] === V) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index !== -1) {
+            for (var j = index; j < arr.length - 1; j++) {
+                arr[j] = arr[j + 1];
+            }
+            arr[arr.length - 1] = 0;
+            document.getElementById("output7").textContent = "Đã xoá V. Mảng mới: " + arr.join(", ");
+        } else {
+            document.getElementById("output7").textContent = "V không có trong mảng.";
+        }
+    }
+
+    function bai8() {
+        var arr = mangCoSan.slice();
+        for (var i = 0; i < arr.length - 1; i++) {
+            for (var j = i + 1; j < arr.length; j++) {
+                if (arr[i] < arr[j]) {
+                    var temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+        document.getElementById("output8").textContent = "Mảng sắp xếp giảm dần: " + arr.join(", ");
+    }
+
+    function bai9() {
+        var a = [1,2,3,4,5,6,7,8,9,10];
+        var b = [11,12,13,14,15,16,17,18,19,20];
+        var c = [];
+
+        for (var i = 0; i < b.length; i++) {
+            c.push(b[i]);
+        }
+        for (var i = 0; i < a.length; i++) {
+            c.push(a[i]);
+        }
+
+        document.getElementById("output9").textContent = "Mảng C sau khi nối: " + c.join(", ");
+    }
+</script>
+
+</body>
+</html>

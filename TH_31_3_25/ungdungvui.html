@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Faking Textarea on Typing</title>
+</head>
+<body>
+<h2>Hãy gõ bất kỳ thứ gì...</h2>
+<form>
+  <textarea id="fakeTextarea" cols="40" rows="10"></textarea>
+</form>
+
+<script>
+  const message = ['T','Ô','I',' ','L','À',' ','M','Ộ','T',' ','Đ','Ứ','A',' ','N','G','Ố','C','!','!','!'];
+  const textarea = document.getElementById("fakeTextarea");
+
+  textarea.addEventListener("keydown", function(event) {
+    const length = textarea.value.length;
+
+    if (length < message.length) {
+      textarea.value += message[length];
+    } else {
+      textarea.value = "";
+    }
+
+    event.preventDefault();
+  });
+</script>
+</body>
+</html>
